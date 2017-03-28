@@ -4,14 +4,6 @@ set -e
 echo "Installing prerequisites for pacaur..."
 sudo pacman -S base-devel fakeroot jshon expac
 
-echo "Installing pacaur..."
-mkdir /tmp/tmp-pacaur
-cd /tmp/tmp-pacaur
-wget https://aur.archlinux.org/cgit/aur.git/plain/PKGBUILD?h=pacaur
-makepkg
-sudo pacman --noconfirm -U *.tar.xz
-cd -
-
 echo "Installing base packages..."
 pacaur --noconfirm --noedit -S \
   termite-git \
@@ -27,7 +19,7 @@ pacaur --noconfirm --noedit -S \
   python2-suds
 
 echo "Installing window manager dependencies..."
-pacaur --noconfirm --noedit -S \
+pacaur --noconfirm --noedit --skippgpcheck -S \
   xcb-util-keysyms \
   xcb-util-wm \
   xcb-util-cursor \
@@ -36,13 +28,11 @@ pacaur --noconfirm --noedit -S \
   libev
 
 echo "Installing tools..."
-pacaur --noconfirm --noedit -S \
+pacaur --noconfirm --noedit --skippgpcheck -S \
   i3lock \
   i3blocks-gaps-git \
   i3status-git \
   gsimplecal \
-  thunderbird \
-  thunderbird-enigmail-bin \
   feh \
   acpi \
   xdotool \
@@ -97,7 +87,6 @@ pacaur --noconfirm --noedit -S \
   pulseaudio-bluetooth \
   blueman \
   redshift \
-  google-chrome \
   firefox \
   lm_sensors
 
